@@ -2,7 +2,7 @@
 output:
 	.ascii "The processor Vendor ID is 'xxxxxxxxxxxx'\n"
 .section .text
-.globl _start
+.global _start
 _start:
 	movl $0, %eax
 	cpuid

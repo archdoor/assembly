@@ -21,14 +21,18 @@ IA-32平台寄存器：
 
 	6个段寄存器：
 		cs: 代码段寄存器(code segment)
-		ss: 栈段寄存器(stack segment)
 		ds: 数据段寄存器(data segment)
+		ss: 栈段寄存器(stack segment)
 
-		es: 附加数据段寄存器(extra data segment)
-		fs: 指向当前活动线程的TEB结构(data segment)
-		gs: 全局段寄存器(global segment)
+		es: 附加数据段指针(extra data segment)
+		fs: 附加数据段指针(data segment)
+		gs: 附加数据段指针(global data segment)
+
+	1个指令指针寄存器：
+		eip: 指令指针寄存器(instruction pointer)
 
 	1个程序状态与控制寄存器：
 		eflags: 标志寄存器(flag register)
-	1个指令指针寄存器：
-		eip: 指令指针寄存器(instruction pointer)
+
+		|31|30|29|28|27|26|25|24|23|22|21|20 |19 |18|17|16|15|14|13|12|11|10|09|08|07|06|05|04|03|02|01|00|
+		|0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |id|vip|vif|ac|vm|rf|0 |nf|iopl |of|df|if|tf|sf|zf|0 |af|0 |pf|0 |cf|

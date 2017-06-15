@@ -1,11 +1,32 @@
 .section .data
-	value:
-		.int 1
+output:
+	.asciz "This is section %d\n"
+
 .section .text
-.globl _start
+.global _start
 _start:
-	nop
-	movl value, %ecx
-	movl $1, %eax
-	movl $0, %ebx
-	int $0x80
+	pushl $1
+	pushl $output
+	call printf
+
+	add $8, %esp
+	call overhere
+
+	pushl $3
+	pushl $output
+	call printf
+
+	add $8, %esp
+	pushl $0
+	call exit
+
+overhere:
+	pushl %ebp
+	movl %esp, %ebp
+	pushl $2
+	pushl $output
+	call printf
+	add $8, %esp
+	movl %ebp, %esp
+	popl %ebp
+	ret
