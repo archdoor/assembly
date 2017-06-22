@@ -1,48 +1,16 @@
-	.file	"test.c"
-	.section	.rodata
-.LC0:
-	.string	"The answer is %d\n"
-	.text
-	.globl	main
-	.type	main, @function
-main:
-.LFB0:
-	.cfi_startproc
-	leal	4(%esp), %ecx
-	.cfi_def_cfa 1, 0
-	andl	$-16, %esp
-	pushl	-4(%ecx)
-	pushl	%ebp
-	.cfi_escape 0x10,0x5,0x2,0x75,0
-	movl	%esp, %ebp
-	pushl	%ecx
-	.cfi_escape 0xf,0x3,0x75,0x7c,0x6
-	subl	$20, %esp
-	movl	$0, -12(%ebp)
-	movl	$0, -12(%ebp)
-	jmp	.L2
-.L3:
-	movl	-12(%ebp), %eax
-	addl	%eax, -16(%ebp)
-	subl	$8, %esp
-	pushl	-16(%ebp)
-	pushl	$.LC0
-	call	printf
-	addl	$16, %esp
-	addl	$1, -12(%ebp)
-.L2:
-	cmpl	$999, -12(%ebp)
-	jle	.L3
-	movl	$0, %eax
-	movl	-4(%ebp), %ecx
-	.cfi_def_cfa 1, 0
-	leave
-	.cfi_restore 5
-	leal	-4(%ecx), %esp
-	.cfi_def_cfa 4, 4
-	ret
-	.cfi_endproc
-.LFE0:
-	.size	main, .-main
-	.ident	"GCC: (GNU) 7.1.1 20170516"
-	.section	.note.GNU-stack,"",@progbits
+.section .data
+value1:
+	.byte 0x34, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+value2:
+	.int 2
+
+.section .text
+.global _start
+_start:
+	fbld value1
+	fimul value2
+	fbstp value1
+
+	movl $1, %eax
+	movl $0, %ebx
+	int $0x80

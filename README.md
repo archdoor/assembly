@@ -7,7 +7,14 @@ assembly language
 	readelf -h libxxxx.so
 
 IA-32平台寄存器：
-	8个通用寄存器：
+	mmx(多媒体扩展multimedia extension)寄存器(64位)：
+		mm0, mm1, mm2, mm3, mm4, mm5, mm6, mm7
+	fpu(浮点运算单元)寄存器(80位):
+		st0, st1, st2, st3, st4, st5, st6, st7
+	sse(流化SIMD扩展)寄存器(128位)：
+		xmm0, xmm1, xmm2, xmm3, xmm4, xmm5, xmm6, xmm7
+
+	8个通用寄存器(32位)：
 		4个主要用在算术运算指令中:
 			eax: 累加器(accumulator，针对操作数和结果数据的)
 			ebx: 基址寄存器(base，ds段中的数据指针) 
@@ -19,7 +26,7 @@ IA-32平台寄存器：
 			ebp: 目的变址寄存器(destination index，字符串操作目标指针) 
 			esp: 栈指针寄存器(stack pointer，ss段中栈指针)
 
-	6个段寄存器：
+	6个段寄存器(32位)：
 		cs: 代码段寄存器(code segment)
 		ds: 数据段寄存器(data segment)
 		ss: 栈段寄存器(stack segment)
