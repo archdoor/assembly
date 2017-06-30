@@ -1,20 +1,27 @@
 .section .data
-value1:
-	.float 12.34, 2345.543, -3493.2, 0.44901
-value2:
-	.float -5439.234, 32121.4, 1.0094, 0.000003
+string1:
+	.asciz "This is a test of the conversion program!\n"
+length:
+	.int 43
+divisor:
+	.int 4
 
 .section .bss
-	.lcomm data, 16
+	.lcomm output, 43
 
 .section .text
 .global _start
 _start:
-	nop
-	movups value1, %xmm0
-	movups value2, %xmm1
-	movups %xmm0, %xmm2
-	movups %xmm0, data
+	leal string1, %esi
+	leal output, %edi
+	movl length, %ecx
+	shrl $2, %ecx
+
+	cld
+	rep movsl
+	movl length, %ecx
+	andl $3, %ecx
+	rep movsb
 
 	movl $1, %eax
 	movl $0, %ebx
